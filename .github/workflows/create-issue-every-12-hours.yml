@@ -3,6 +3,7 @@ name: Create Issue Every 12 Hours
 on:
   schedule:
     - cron: '0 */12 * * *'
+  workflow_dispatch:
 
 jobs:
   create_issue:
