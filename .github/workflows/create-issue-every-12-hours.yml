@@ -12,8 +12,9 @@ jobs:
       - name: Create an issue
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            const { context, github } = require('@actions/github');
             const { owner, repo } = context.repo;
             const issueTitle = `Scheduled Issue - ${new Date().toISOString()}`;
             const issueBody = 'This is an automatically created issue every 12 hours @hoaongtrieu9.';
