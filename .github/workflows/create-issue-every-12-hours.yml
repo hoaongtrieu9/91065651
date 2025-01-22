@@ -1,8 +1,8 @@
-name: Create Issue Every 12 Hours
+name: Create Issue Every Week
 
 on:
   schedule:
-    - cron: '0 */12 * * *'
+    - cron: '0 0 * * 0'
   workflow_dispatch:
   push:
 
@@ -15,6 +15,6 @@ jobs:
         with:
           route: POST /repos/${{ github.repository }}/issues
           title: Scheduled Issue - ${{ github.event.inputs.issue_title || github.run_id }}
-          body: This is an automatically created issue every 12 hours @hoaongtrieu9.
+          body: This is an automatically created issue every week @hoaongtrieu9.
         env:
-          GITHUB_TOKE: ${{ secrets.TOKEN }}
+          GITHUB_TOKE: ${{ secrets.GITHUB_TOKEN }}
