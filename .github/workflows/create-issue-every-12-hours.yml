@@ -17,4 +17,4 @@ jobs:
           title: Scheduled Issue - ${{ github.event.inputs.issue_title || github.run_id }}
           body: This is an automatically created issue every 12 hours @hoaongtrieu9.
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKE: ${{ secrets.TOKEN }}
