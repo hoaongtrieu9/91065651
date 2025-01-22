@@ -10,17 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create an issue
-        uses: actions/github-script@v6
+        uses: octokit/request-action@v2.x
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const { context, github } = require('@actions/github');
-            const { owner, repo } = context.repo;
-            const issueTitle = `Scheduled Issue - ${new Date().toISOString()}`;
-            const issueBody = 'This is an automatically created issue every 12 hours @hoaongtrieu9.';
-            await github.issues.create({
-              owner,
-              repo,
-              title: issueTitle,
-              body: issueBody
-            });
+          route: POST /repos/${{ github.repository }}/issues
+          title: Scheduled Issue - ${{ github.event.inputs.issue_title || github.run_id }}
+          body: This is an automatically created issue every 12 hours @hoaongtrieu9.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
