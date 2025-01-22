@@ -15,7 +15,7 @@ jobs:
           script: |
             const { owner, repo } = context.repo;
             const issueTitle = `Scheduled Issue - ${new Date().toISOString()}`;
-            const issueBody = 'This is an automatically created issue every 12 hours.';
+            const issueBody = 'This is an automatically created issue every 12 hours @hoaongtrieu9.';
             await github.issues.create({
               owner,
               repo,
