@@ -1,0 +1,24 @@
+name: Create Issue Every 12 Hours
+
+on:
+  schedule:
+    - cron: '0 */12 * * *'
+
+jobs:
+  create_issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create an issue
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo } = context.repo;
+            const issueTitle = `Scheduled Issue - ${new Date().toISOString()}`;
+            const issueBody = 'This is an automatically created issue every 12 hours.';
+            await github.issues.create({
+              owner,
+              repo,
+              title: issueTitle,
+              body: issueBody
+            });
